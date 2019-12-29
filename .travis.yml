@@ -1,0 +1,37 @@
+language: ruby
+
+rvm:
+  - 2.6.3
+
+script: ./script/travis_build.sh
+
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+addons:
+  apt:
+    packages:
+      - libcurl4-openssl-dev
+
+sudo: false
+
+cache: bundler
+
+deploy:
+  - provider: s3
+    access_key_id: AKIAYHGAO4YHEWXUPXEX
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: jonathanj
+    local-dir: _site
+    acl: public_read
+    on:
+      repo: jonathanjuursema/jonathanj.nl
+  - provider: cloudformation
+    edge: true
+    access_key_id: AKIAYHGAO4YHEWXUPXEX
+    secret_access_key: $AWS_SECRET_KEY
+    region: eu-west-1
+    template: application.cfn.yaml
+    stack_name: jonathanj-website
+    capabilities: CAPABILITY_NAMED_IAM

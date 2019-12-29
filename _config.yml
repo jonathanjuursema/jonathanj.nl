@@ -10,6 +10,7 @@ sass:
 
 exclude:
   - .sass-cache
+  - vendor
 
 defaults:
   - scope:
