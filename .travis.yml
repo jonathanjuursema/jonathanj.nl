@@ -32,6 +32,7 @@ deploy:
     skip_cleanup: true
     access_key_id: AKIAYHGAO4YHEWXUPXEX
     secret_access_key: $AWS_SECRET_KEY
+    region: eu-west-1
     bucket: jonathanj
     local-dir: _site
     acl: public_read

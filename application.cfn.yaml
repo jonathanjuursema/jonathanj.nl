@@ -17,75 +17,75 @@ Parameters:
 Resources:
 
   # CloudFront
-#  CloudFrontWebDistribution:
-#    Type: AWS::CloudFront::Distribution
-#    Properties:
-#      DistributionConfig:
-#        Enabled: true
-#        Comment: IPv8 Website (New)
-#        Aliases:
-#          - www.ipv8.net
-#          - ipv8.net
-#        IPV6Enabled: true
-#        Origins:
-#          - DomainName: !Select [1, !Split ['//', !GetAtt S3Bucket.WebsiteURL]]
-#            Id: ipv8-site
-#            CustomOriginConfig:
-#              OriginProtocolPolicy: http-only
-#        ViewerCertificate:
-#          AcmCertificateArn: !Ref AcmCertificate
-#          SslSupportMethod: sni-only
-#        DefaultCacheBehavior:
-#          AllowedMethods:
-#            - GET
-#            - HEAD
-#            - OPTIONS
-#          DefaultTTL: 0
-#          ForwardedValues:
-#            QueryString: false
-#          TargetOriginId: ipv8-site
-#          ViewerProtocolPolicy: redirect-to-https
+  CloudFrontWebDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: JonathnJ.nl Website (New)
+        Aliases:
+          - www.jonathanj.nl
+          - jonathanj.nl
+        IPV6Enabled: true
+        Origins:
+          - DomainName: !Select [1, !Split ['//', !GetAtt S3Bucket.WebsiteURL]]
+            Id: jonathanj-site
+            CustomOriginConfig:
+              OriginProtocolPolicy: http-only
+        ViewerCertificate:
+          AcmCertificateArn: !Ref AcmCertificate
+          SslSupportMethod: sni-only
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          DefaultTTL: 0
+          ForwardedValues:
+            QueryString: false
+          TargetOriginId: jonathanj-site
+          ViewerProtocolPolicy: redirect-to-https
 
   # DNS
-#  DNSApexRecord4:
-#    Type: AWS::Route53::RecordSet
-#    Properties:
-#      AliasTarget:
-#        DNSName: !GetAtt CloudFrontWebDistribution.DomainName
-#        HostedZoneId: Z2FDTNDATAQYW2
-#      Name: jonathanj.nl
-#      HostedZoneId: !Ref HostedZoneId
-#      Type: A
-#
-#  DNSApexRecord6:
-#    Type: AWS::Route53::RecordSet
-#    Properties:
-#      AliasTarget:
-#        DNSName: !GetAtt CloudFrontWebDistribution.DomainName
-#        HostedZoneId: Z2FDTNDATAQYW2
-#      Name: jonathanj.nl
-#      HostedZoneId: !Ref HostedZoneId
-#      Type: AAAA
-#
-#  DNSWwwRecord4:
-#    Type: AWS::Route53::RecordSet
-#    Properties:
-#      AliasTarget:
-#        DNSName: !GetAtt CloudFrontWebDistribution.DomainName
-#        HostedZoneId: Z2FDTNDATAQYW2
-#      Name: www.jonathanj.nl
-#      HostedZoneId: !Ref HostedZoneId
-#      Type: A
-#
-#  DNSWwwRecord6:
-#    Type: AWS::Route53::RecordSet
-#    Properties:
-#      AliasTarget:
-#        DNSName: !GetAtt CloudFrontWebDistribution.DomainName
-#        HostedZoneId: Z2FDTNDATAQYW2
-#      Name: www.jonathanj.nl
-#      HostedZoneId: !Ref HostedZoneId
-#      Type: AAAA
+  DNSApexRecord4:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      AliasTarget:
+        DNSName: !GetAtt CloudFrontWebDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+      Name: jonathanj.nl
+      HostedZoneId: !Ref HostedZoneId
+      Type: A
+
+  DNSApexRecord6:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      AliasTarget:
+        DNSName: !GetAtt CloudFrontWebDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+      Name: jonathanj.nl
+      HostedZoneId: !Ref HostedZoneId
+      Type: AAAA
+
+  DNSWwwRecord4:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      AliasTarget:
+        DNSName: !GetAtt CloudFrontWebDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+      Name: www.jonathanj.nl
+      HostedZoneId: !Ref HostedZoneId
+      Type: A
+
+  DNSWwwRecord6:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      AliasTarget:
+        DNSName: !GetAtt CloudFrontWebDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+      Name: www.jonathanj.nl
+      HostedZoneId: !Ref HostedZoneId
+      Type: AAAA
 
   # Bucket
   S3Bucket:
