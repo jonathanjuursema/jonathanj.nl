@@ -19,15 +19,8 @@ sudo: false
 cache: bundler
 
 deploy:
-  - provider: s3
-    access_key_id: AKIAYHGAO4YHEWXUPXEX
-    secret_access_key: $AWS_SECRET_KEY
-    bucket: jonathanj
-    local-dir: _site
-    acl: public_read
-    on:
-      repo: jonathanjuursema/jonathanj.nl
   - provider: cloudformation
+    skip_cleanup: true
     edge: true
     access_key_id: AKIAYHGAO4YHEWXUPXEX
     secret_access_key: $AWS_SECRET_KEY
@@ -35,3 +28,12 @@ deploy:
     template: application.cfn.yaml
     stack_name: jonathanj-website
     capabilities: CAPABILITY_NAMED_IAM
+  - provider: s3
+    skip_cleanup: true
+    access_key_id: AKIAYHGAO4YHEWXUPXEX
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: jonathanj
+    local-dir: _site
+    acl: public_read
+    on:
+      repo: jonathanjuursema/jonathanj.nl
