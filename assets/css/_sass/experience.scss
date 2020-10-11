@@ -1,0 +1,38 @@
+.experience .experience-card-image, .experience i {
+  transition: opacity 0.2s;
+}
+
+.experience .experience-card-image {
+  background-size: cover;
+  opacity: 0.3;
+}
+
+.experience .card:hover {
+  .experience-card-image {
+    opacity: 1 !important;
+  }
+
+  i {
+    opacity: 1 !important;
+  }
+}
+
+.experience .card {
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.experience .experience-title-icon {
+  margin: 0.25em 0.5em auto auto;
+  opacity: 0.3;
+  color: $primary;
+}
+
+.experience .experience-sub-icon {
+  margin-right: 0.5em;
+  margin-left: 0.7em;
+}
+
+.card p:last-child {
+  margin-bottom: 0px;
+}

@@ -5,8 +5,9 @@
 
 $font-family-base: "Lato";
 
+$primary: #26ADE4;
 $theme-colors: (
-  "primary": {{site.color-scheme}}
+  "primary": #26ADE4
 );
 
 // Width of the content area
@@ -66,4 +67,4 @@ $on-laptop: 800px;
 @import "bootstrap/utilities";
 @import "bootstrap/print";
 
-@import "style", "custom";
+@import "style", "custom", "experience", "organisations";
