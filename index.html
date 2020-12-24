@@ -1,129 +1,42 @@
 ---
-
+show_header: true
 ---
 
 <div class="row">
-    <div class="col-md-9 mb-5">
-        <h4>Hey! 👋🏼</h4>
-        <hr>
-        <p>
-            I'm a nerd from the Netherlands. I am curious, communicative, always looking to learn and eager to try
-            new and challenging things. My professional interest revolves mainly around computers with a focus on security,
-            networking and infrastructure. Other than that I also love to build my own PC, play video games, learn about
-            (astro)physics and do some photography.
+    <div class="col-md-12 organisation">
+
+        <p class="my-5">
+
         </p>
 
-        <p>
-            I love to go outside.️ I try to work out multiple times a week by climbing and other activities. I enjoy
-            traveling, and try to go on a winter sports and/or diving vacation at least once a year. In 2020, I took three
-            months off to <a href="https://www.flickr.com/photos/jonathanjuursema/albums/72157712706245321" target="_blank">go
-            to New Zealand</a> and travel around in a converted campervan.
-        </p>
+        {% if site.posts.size == 0 %}
 
-        <p>
-            During my studies I've spent a lot of time I should have spent studying getting involved in various associations and
-            organisations. Even though it's been some time since I graduated I still feel connected to many of them and I try to
-            help whenever I can.
-        </p>
-        <p>
-            You won't find me on social media much. This website is my internet presence where I'd love to share what
-            I'm up to. Are you interested to get in touch? Feel free to send me an e-mail! You can find my contact
-            details <span class="d-sm-none d-md-inline d-lg-inline d-xl-inline">on the right.</span>
-            <span class="d-sm-inline d-md-none d-lg-none d-xl-none">below.</span>
-        </p>
-    </div>
-    <div class="col-md-3 mb-5">
-        <h4>Contact 📬</h4>
-        <hr>
-        <p>
-            <i class="fal fa-at fa-fw mr-1"></i>
-            <a href="mailto:hallo@jonathanj.nl">hey@jonathanj.nl</a><br>
-        </p>
-        <p>
-            <i class="fal fa-id-card fa-fw mr-1"></i>
-            <strong>Jonathan Juursema</strong><br>
+        <h5 style="text-align: center;">
+            I hope to be publishing some blog posts about technology here soon. If you're interested, check back later!
+        </h5>
 
-            <i class="fal fa-location-arrow fa-fw mr-1"></i>
-            Utrecht, The Netherlands 🇳🇱
-        </p>
-        <p>
-            <i class="fab fa-github fa-fw mr-1"></i>
-            <a href="https://github.com/jonathanjuursema" target="_blank">
-                GitHub Profile
-            </a>
-        </p>
-        <div class="index-photo mt-5 ml-4">
+        {% endif %}
 
-        </div>
-    </div>
-</div>
+        {% for post in site.posts %}
 
-<div class="row index-cards">
+        <div class="card">
 
-    <div class="col-lg-4">
-        <div class="card h-100">
-            <div class="card-img-top card-canvas"
-                 style=" height: 150px; background-image: url('/assets/images/cards/clouds.jpg');">
-                &nbsp;
-            </div>
             <div class="card-body">
-                <h4 class="card-title">Experience</h4>
+                <h5 class="card-title font-weight-bold">
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    {{ post.date | date_to_long_string }}
+                </h6>
                 <p class="card-text">
-                    I'm currently working as a Site Reliability Engineer. I'm part of a small team working on
-                    building a platform our colleagues can use to deploy their application on AWS.
+                    {{ post.excerpt }}
                 </p>
+                <i class="fas fa-fw fa-long-arrow-alt-right"></i> <a href="{{ post.url }}" class="card-link">Read this post.</a>
             </div>
-            <div class="card-footer">
-                <a href="./experience.html" class="btn btn-primary">
-                    Experience
-                </a>
-                <div class="btn float-right"><i class="fad fa-user-tie"></i></div>
-            </div>
-        </div>
-    </div>
 
-    <div class="col-lg-4">
-        <div class="card h-100">
-            <div class="card-img-top card-canvas"
-                 style=" height: 150px; background-image: url('/assets/images/cards/activism.jpg');
-                 background-position: center top;">
-                &nbsp;
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">Volunteering</h4>
-                <p class="card-text">
-                    There are a number of associations and organisations I feel personally connected to and that I have
-                    been actively involved in in the past, present and future!
-                </p>
-            </div>
-            <div class="card-footer">
-                <a href="./organisations.html" class="btn btn-primary">
-                    Organisations
-                </a>
-                <div class="btn float-right"><i class="fad fa-hands-helping"></i></div>
-            </div>
         </div>
-    </div>
 
-    <div class="col-lg-4">
-        <div class="card h-100">
-            <div class="card-img-top card-canvas"
-                 style=" height: 150px; background-image: url('/assets/images/cards/photography.jpg');">
-                &nbsp;
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">Photography</h4>
-                <p class="card-text">
-                    I love to make photos. Whenver I'm somewhere interesting, chances are that I have my camera on hand.
-                </p>
-            </div>
-            <div class="card-footer">
-                <a href="https://www.flickr.com/photos/jonathanjuursema/albums" class="btn btn-primary" target="_blank">
-                    Photo albums
-                </a>
-                <div class="btn float-right"><i class="fad fa-images"></i></div>
-            </div>
-        </div>
-    </div>
+        {% endfor %}
 
+    </div>
 </div>

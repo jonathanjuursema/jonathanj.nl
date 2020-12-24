@@ -1,9 +1,6 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="{{ site.baseurl }}/">
-            Jonathan Juursema
-        </a>
         <button
                 class="navbar-toggler ml-auto"
                 type="button"
@@ -15,13 +12,26 @@
         >
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <div class="collapse navbar-collapse order-1 order-md-0 dual-collapse2" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 {% for item in site.data.menu %}
                 <li class="nav-item{% if item.link == page.url %} active {% endif %}">
                     <a class="nav-link" href="{{ site.baseurl }}{{ item.link }}">{{ item.title }}</a>
                 </li>
                 {% endfor %}
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="mailto:hallo@jonathanj.nl"><i class="fad fa-envelope mr-1"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/jonathanjuursema" target="_blank"><i class="fab fa-github mr-1"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.flickr.com/photos/jonathanjuursema/albums" target="_blank"><i class="fab fa-flickr mr-1"></i></a>
+                </li>
             </ul>
         </div>
     </div>

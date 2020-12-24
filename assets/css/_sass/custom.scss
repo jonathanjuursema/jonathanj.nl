@@ -1,3 +1,12 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 92px;
+}
+
 header {
   background-image: url("/assets/images/header.jpg");
   background-position: center 35%;
@@ -40,5 +49,20 @@ header > div {
 }
 
 .page-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   border-top: 5px solid $primary;
+}
+
+.code-card {
+  padding: 20px;
+
+  .highlight {
+    margin: 0;
+
+    pre {
+      margin: 0;
+    }
+  }
 }

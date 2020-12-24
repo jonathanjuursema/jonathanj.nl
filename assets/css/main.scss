@@ -67,4 +67,6 @@ $on-laptop: 800px;
 @import "bootstrap/utilities";
 @import "bootstrap/print";
 
-@import "style", "custom", "experience", "organisations";
+@import "style", "custom", "experience";
+
+@import "syntax-highlight/style";
