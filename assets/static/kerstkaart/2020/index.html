@@ -228,13 +228,14 @@
         rotateZ = (Math.random() * 6) - 3
         document.getElementById("card").style.transform = "rotateY(" + flip_front + "deg) rotateZ(" + rotateZ + "deg)";
         document.getElementById("card-back").style.transform = "rotateY(" + flip_back + "deg) rotateZ(" + rotateZ + "deg)";
-        document.getElementById("draai-om").style.marginTop = "-100px"
+        document.getElementById("draai-om").style.marginTop = "-100px";
         document.getElementById("draai-om").style.opacity = "0"
     }
 
     function fillName() {
         if (window.location.hash) {
-            name_info = window.location.hash.split("!!")
+            name_info = decodeURI(window.location.hash).split("|");
+            console.log(name_info);
             document.getElementById("adres-naam").textContent = name_info[0].replace("#", "");
             document.getElementById("adres-mail").textContent = name_info[1];
         } else {
@@ -252,7 +253,7 @@
     }
 
     function fadeIn() {
-        document.getElementById("card").style.transform = "rotateY(0deg) rotateZ(2deg) translateY(0px)"
+        document.getElementById("card").style.transform = "rotateY(0deg) rotateZ(2deg) translateY(0px)";
         document.getElementById("draai-om").style.marginTop = "-10px"
     }
 
