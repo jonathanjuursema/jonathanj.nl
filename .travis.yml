@@ -35,6 +35,6 @@ deploy:
     region: eu-west-1
     bucket: jonathanj
     local-dir: _site
-    acl: public_read
+    acl: private
     on:
       repo: jonathanjuursema/jonathanj.nl

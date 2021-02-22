@@ -28,10 +28,11 @@ Resources:
           - jonathanj.nl
         IPV6Enabled: true
         Origins:
-          - DomainName: !Select [1, !Split ['//', !GetAtt S3Bucket.WebsiteURL]]
+          - DomainName: !GetAtt S3Bucket.DomainName
             Id: jonathanj-site
-            CustomOriginConfig:
-              OriginProtocolPolicy: http-only
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOAI}"
+        DefaultRootObject: index.html
         ViewerCertificate:
           AcmCertificateArn: !Ref AcmCertificate
           SslSupportMethod: sni-only
@@ -45,6 +46,12 @@ Resources:
             QueryString: false
           TargetOriginId: jonathanj-site
           ViewerProtocolPolicy: redirect-to-https
+
+  CloudFrontOAI:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: "Identity for jonathanj.nl"
 
   # DNS
   DNSApexRecord4:
@@ -91,7 +98,33 @@ Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      AccessControl: PublicRead
       BucketName: jonathanj
       WebsiteConfiguration:
         IndexDocument: index.html
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
+
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:GetObject
+            Effect: Allow
+            Resource:
+              - !Sub "${S3Bucket.Arn}/*"
+            Principal:
+              CanonicalUser: !GetAtt CloudFrontOAI.S3CanonicalUserId
+          - Action:
+              - s3:ListBucket
+            Effect: Allow
+            Resource:
+              - !GetAtt S3Bucket.Arn
+            Principal:
+              CanonicalUser: !GetAtt CloudFrontOAI.S3CanonicalUserId
