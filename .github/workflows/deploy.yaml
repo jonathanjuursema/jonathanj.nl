@@ -1,0 +1,53 @@
+name: Deploy Website
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  deploy-rtx:
+    name: Deploy website and resources
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install libcurl4-openssl-dev
+
+      - name: Test
+        run: |
+          bundle exec jekyll build
+          bundle exec htmlproofer ./_site --disable-external
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.CICD_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.CICD_AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Deploy CloudFormation Stack
+        uses: aws-actions/aws-cloudformation-github-deploy@v1.0.3
+        with:
+          name: 'jonathanj-website'
+          template: application.cfn.yaml
+          no-fail-on-empty-changeset: 1
+
+      - uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl private
+        env:
+          AWS_S3_BUCKET: jonathanj
+          AWS_ACCESS_KEY_ID: ${{ secrets.CICD_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CICD_AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: eu-west-1
+          SOURCE_DIR: _site
