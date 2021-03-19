@@ -17,6 +17,13 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{{ site.baseurl }}/assets/vendor/jquery/jquery.min.js"></script>
   <script src="{{ site.baseurl }}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Force domain name -->
+  <script type="text/javascript">
+    if (!["jonathanj.nl", "127.0.0.1", "localhost"].includes(window.location.hostname)) {
+      window.top.location.href = 'https://jonathanj.nl' + window.location.pathname;
+    }
+  </script>
 </body>
 
 </html>
