@@ -1,3 +1,3 @@
-# jonathanj.nl - ![Build status.](https://api.travis-ci.org/jonathanjuursema/jonathanj.nl.svg?branch=master)
+# jonathanj.nl - [![Deploy Website](https://github.com/jonathanjuursema/jonathanj.nl/actions/workflows/deploy.yaml/badge.svg)](https://github.com/jonathanjuursema/jonathanj.nl/actions/workflows/deploy.yaml)
 
 [jonathanj.nl](https://jonathanj.nl) is my personal website.

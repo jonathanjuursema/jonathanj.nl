@@ -1,5 +1,5 @@
 ---
-title:          Enabling DNSSEC on AWS Route 53 using CloudFormation  
+title:          Enabling DNSSEC on AWS Route 53 using CloudFormation.
 date:           2021-02-03
 layout:         post
 ---
